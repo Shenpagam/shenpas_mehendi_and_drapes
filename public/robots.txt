@@ -1,0 +1,11 @@
+# Robots.txt for Shenpa's Mehendi & Drapes
+# Allow all search engine bots to crawl public website pages
+User-agent: *
+Allow: /
+
+# Exclude internal build artifacts
+Disallow: /_next/
+
+# Production XML Sitemap location
+Sitemap: https://shenpas-mehendi-and-drapes.onrender.com/sitemap.xml
+

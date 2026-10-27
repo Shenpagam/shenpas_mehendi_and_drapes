@@ -1,0 +1,31 @@
+# Render Blueprint for Shenpa's Mehendi & Drapes
+# Free Static Site Deployment Configuration
+services:
+  - type: web
+    name: shenpas-mehendi-and-drapes
+    runtime: static
+    buildCommand: npm run build
+    staticPublishPath: dist
+    pullRequestPreviewsEnabled: false
+    envVars:
+      - key: NEXT_PUBLIC_SITE_URL
+        value: https://shenpas-mehendi-and-drapes.onrender.com
+    routes:
+      # Serve static gallery pre-rendered page on direct navigation
+      - type: rewrite
+        source: /gallery
+        destination: /gallery.html
+      # Handle SPA and static route fallback
+      - type: rewrite
+        source: /*
+        destination: /404.html
+    headers:
+      - path: /*
+        name: X-Frame-Options
+        value: SAMEORIGIN
+      - path: /*
+        name: X-Content-Type-Options
+        value: nosniff
+      - path: /*
+        name: Referrer-Policy
+        value: strict-origin-when-cross-origin

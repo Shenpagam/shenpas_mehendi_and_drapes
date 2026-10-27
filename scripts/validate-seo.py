@@ -13,6 +13,8 @@ canon = re.search(r'<link rel="canonical" href="(.*?)"', html)
 print("Canonical:", canon.group(1) if canon else "MISSING")
 og_title = re.search(r'<meta property="og:title" content="(.*?)"', html)
 print("OG Title:", og_title.group(1) if og_title else "MISSING")
+g_verify = re.findall(r'<meta name="google-site-verification" content="(.*?)"', html)
+print(f"Google Verification Tag Count: {len(g_verify)} (Token: {g_verify[0] if g_verify else 'None'})")
 
 h1_matches = re.findall(r"<h1[^>]*>(.*?)</h1>", html, re.DOTALL)
 print("H1 Tags:", [re.sub(r"<[^>]+>", "", h).strip() for h in h1_matches])
